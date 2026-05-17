@@ -555,28 +555,7 @@
       "pet_name says: Keep going, superstar!"
     ];
 
-    const catSlides = [
-      {
-        art: "🐱🎀",
-        caption: "Cute study cat!"
-      },
-      {
-        art: "🐈‍⬛✨",
-        caption: "Magic anime cat!"
-      },
-      {
-        art: "😺💖",
-        caption: "Happy pink cat!"
-      },
-      {
-        art: "🐱📚",
-        caption: "School planner cat!"
-      },
-      {
-        art: "🐾🌙",
-        caption: "Dreamy moon cat!"
-      }
-    ];
+    
 
     let todos = JSON.parse(localStorage.getItem("avanaTodos")) || [];
     let events = JSON.parse(localStorage.getItem("avanaEvents")) || [];
@@ -585,15 +564,14 @@
 
     const notesBox = document.getElementById("notesBox");
 
-    window.onload = function () {
-      loadSavedData();
-      showDailyQuote();
-      renderTodos();
-      renderEvents();
-      showSlide();
-	  setupBook();
-	showPhoto();
-    };
+   window.onload = function () {
+  loadSavedData();
+  showDailyQuote();
+  renderTodos();
+  renderEvents();
+  setupBook();
+  showPhoto();
+};
 	  
 
     function playCuteSound() {
@@ -802,42 +780,7 @@
       document.getElementById("petMessage").textContent = catMessages[randomIndex];
     }
 
-    function showSlide() {
-      document.getElementById("catArt").textContent = catSlides[slideIndex].art;
-      document.getElementById("catCaption").textContent = catSlides[slideIndex].caption;
-    }
-
-    function nextSlide() {
-      playCuteSound();
-      slideIndex++;
-
-      if (slideIndex >= catSlides.length) {
-        slideIndex = 0;
-      }
-
-      showSlide();
-    }
-
-    function previousSlide() {
-      playCuteSound();
-      slideIndex--;
-
-      if (slideIndex < 0) {
-        slideIndex = catSlides.length - 1;
-      }
-
-      showSlide();
-    }
-
-    setInterval(function () {
-      slideIndex++;
-
-      if (slideIndex >= catSlides.length) {
-        slideIndex = 0;
-      }
-
-      showSlide();
-    }, 4000);
+    
 
     function changeTheme(theme) {
       playCuteSound();
