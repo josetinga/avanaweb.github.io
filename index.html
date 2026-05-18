@@ -384,7 +384,14 @@
 .notebook-page,
 #bookCanvas {
   touch-action: none;
-}	  
+}
+#bookText {
+  pointer-events: auto;
+}
+
+#bookCanvas {
+  pointer-events: none;
+}
   </style>
 </head>
 <body>
@@ -926,7 +933,9 @@ function setBookMode(mode) {
   if (mode === "type") {
     bookCanvas.style.pointerEvents = "none";
     bookText.style.pointerEvents = "auto";
-  } else {
+  }
+
+  if (mode === "draw") {
     bookCanvas.style.pointerEvents = "auto";
     bookText.style.pointerEvents = "none";
   }
@@ -961,6 +970,19 @@ function stopDrawing(event) {
 
   drawing = false;
   saveBookPage();
+}
+function eraseBookPage() {
+  const eraseIt = confirm("Erase this whole page?");
+
+  if (!eraseIt) return;
+
+  bookText.value = "";
+  bookCtx.clearRect(0, 0, bookCanvas.width, bookCanvas.height);
+  bookPages[currentBookPage] = { text: "", drawing: "" };
+
+  localStorage.setItem("avanaFunBook", JSON.stringify(bookPages));
+
+  setBookMode("type");
 }
 
 /* PASTE SLIDESHOW CODE HERE */
