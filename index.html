@@ -816,37 +816,32 @@
     }
 
     function loadSavedData() {
-      const savedMood = localStorage.getItem("avanaMood");
-      if (savedMood) {
-        document.getElementById("moodDisplay").textContent = "Today’s mood: " + savedMood;
-      const savedYouTubeLink = localStorage.getItem("avanaYouTubeLink");
-	if (savedYouTubeLink) {
-  	document.getElementById("youtubeLink").value = savedYouTubeLink;
-  	loadYouTubeVideo();
-	}
-      }
+  const savedMood = localStorage.getItem("avanaMood");
+  if (savedMood) {
+    document.getElementById("moodDisplay").textContent = "Today’s mood: " + savedMood;
+  }
 
-      const savedNotes = localStorage.getItem("avanaNotes");
-      if (savedNotes) {
-        notesBox.value = savedNotes;
-      }
+  const savedNotes = localStorage.getItem("avanaNotes");
+  if (savedNotes) {
+    notesBox.value = savedNotes;
+  }
 
-      const savedFavorites = JSON.parse(localStorage.getItem("avanaFavorites"));
+  const savedFavorites = JSON.parse(localStorage.getItem("avanaFavorites"));
 
-      if (savedFavorites) {
-        document.getElementById("favColor").value = savedFavorites.color || "";
-        document.getElementById("favAnimal").value = savedFavorites.animal || "";
-        document.getElementById("favFood").value = savedFavorites.food || "";
-        document.getElementById("favSubject").value = savedFavorites.subject || "";
-        document.getElementById("favShow").value = savedFavorites.show || "";
-        document.getElementById("favGame").value = savedFavorites.game || "";
-      }
+  if (savedFavorites) {
+    document.getElementById("favColor").value = savedFavorites.color || "";
+    document.getElementById("favAnimal").value = savedFavorites.animal || "";
+    document.getElementById("favFood").value = savedFavorites.food || "";
+    document.getElementById("favSubject").value = savedFavorites.subject || "";
+    document.getElementById("favShow").value = savedFavorites.show || "";
+    document.getElementById("favGame").value = savedFavorites.game || "";
+  }
 
-      const savedTheme = localStorage.getItem("avanaTheme");
-      if (savedTheme) {
-        changeTheme(savedTheme);
-      }
-    }
+  const savedTheme = localStorage.getItem("avanaTheme");
+  if (savedTheme) {
+    changeTheme(savedTheme);
+  }
+}
 
    let bookPages = JSON.parse(localStorage.getItem("avanaFunBook")) || [
   { text: "", drawing: "" }
