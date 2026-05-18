@@ -401,11 +401,13 @@
       <h2>Daily Mood Picker 💕</h2>
       <div class="mood-buttons">
         <button onclick="setMood('Happy 😊')">😊 Happy</button>
-        <button onclick="setMood('Sleepy 😴')">😴 Sleepy</button>
-        <button onclick="setMood('Cool 😎')">😎 Cool</button>
-        <button onclick="setMood('Excited 😍')">😍 Excited</button>
-        <button onclick="setMood('Okay 😐')">😐 Okay</button>
-        <button onclick="setMood('Cat Mood 🐱')">🐱 Cat Mood</button>
+		<button onclick="setMood('Calm 😌')">😌 Calm</button>
+		<button onclick="setMood('Sad 😢')">😢 Sad</button>
+		<button onclick="setMood('Upset 😠')">😠 Upset</button>
+		<button onclick="setMood('Playful 😜')">😜 Playful</button>
+		<button onclick="setMood('Sleepy 😴')">😴 Sleepy</button>
+		<button onclick="setMood('Excited 😍')">😍 Excited</button>
+		<button onclick="setMood('Cat Mood 🐱')">🐱 Cat Mood</button>
       </div>
       <div class="selected-display" id="moodDisplay">Today’s mood: Pick one!</div>
     </section>
@@ -970,7 +972,18 @@ const slideshowPictures = [
 let photoIndex = 0;
 
 function showPhoto() {
-  document.getElementById("slideshowImage").src = slideshowPictures[photoIndex];
+  const image = document.getElementById("slideshowImage");
+
+  if (!image) {
+    console.log("Slideshow image area not found.");
+    return;
+  }
+
+  image.src = slideshowPictures[photoIndex];
+  image.onerror = function () {
+    image.alt = "Picture could not load. Check the file name.";
+    console.log("Could not load:", slideshowPictures[photoIndex]);
+  };
 }
 
 function nextPhoto() {
@@ -994,7 +1007,7 @@ function previousPhoto() {
 }
 
 setInterval(nextPhoto, 4000);
-</script>
+
   </script>
 </body>
 </html>
