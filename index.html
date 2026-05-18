@@ -381,6 +381,10 @@
   display: block;
   background: white;
 }
+.notebook-page,
+#bookCanvas {
+  touch-action: none;
+}	  
   </style>
 </head>
 <body>
@@ -931,6 +935,8 @@ function setBookMode(mode) {
 function startDrawing(event) {
   if (bookMode !== "draw") return;
 
+  event.preventDefault();
+
   drawing = true;
   bookCtx.beginPath();
   bookCtx.moveTo(event.offsetX, event.offsetY);
@@ -938,6 +944,8 @@ function startDrawing(event) {
 
 function drawOnBook(event) {
   if (!drawing || bookMode !== "draw") return;
+
+  event.preventDefault();
 
   bookCtx.lineWidth = 3;
   bookCtx.lineCap = "round";
@@ -948,17 +956,10 @@ function drawOnBook(event) {
   saveBookPage();
 }
 
-function stopDrawing() {
+function stopDrawing(event) {
+  if (event) event.preventDefault();
+
   drawing = false;
-  saveBookPage();
-}
-
-function eraseBookPage() {
-  if (!confirm("Erase this whole page?")) return;
-
-  bookText.value = "";
-  bookCtx.clearRect(0, 0, bookCanvas.width, bookCanvas.height);
-  bookPages[currentBookPage] = { text: "", drawing: "" };
   saveBookPage();
 }
 
